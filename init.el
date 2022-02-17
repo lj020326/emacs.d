@@ -9,6 +9,20 @@
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
 ;;(setq debug-on-error t)
 
+;; ref: https://emacs.stackexchange.com/questions/4253/how-to-start-emacs-with-a-custom-user-emacs-directory
+(setq user-init-file (or load-file-name (buffer-file-name)))
+(setq user-emacs-directory (file-name-directory user-init-file))
+
+;;-------------------------------------------------------------------------------
+;; sets the load path for lisp files
+;; append to load path
+;;-------------------------------------------------------------------------------
+;; (setq original-load-path load-path)
+;; (setq load-path
+;;       (append
+;;        (list (expand-file-name "~/.demacs.d/lisp/"))
+;;        original-load-path))
+
 (let ((minver "25.1"))
   (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
@@ -176,3 +190,52 @@
 ;; no-byte-compile: t
 ;; End:
 ;;; init.el ends here
+
+
+
+;;-------------------------------------------------------------------------------
+;; sets the load path for lisp files
+;; append to load path
+;;-------------------------------------------------------------------------------
+;(setq original-load-path load-path)
+;(setq load-path
+;      (append
+;       (list (expand-file-name "~/.emacs.d/lisp/"))
+;       original-load-path))
+
+;(setq load-path (cons (expand-file-name "~/.xemacs/lisp") load-path))
+;(setq load-path (cons "~/.xemacs/lisp" load-path))
+
+;; set stuff
+(line-number-mode 1)
+(set-default 'auto-show-mode nil)
+(setq blink-matching-paren t)
+(setq column-number-mode t)
+
+;; dired-x
+
+;;(setq dired-load-hook '(lambda () (load "dired-x")))
+
+;;-------------------------------------------------------------------------------
+;; Loads lisp/desktop.el
+;; Always use Meta-X desktop-save when exiting xemacs to save your settings
+;;-------------------------------------------------------------------------------
+                                        ;(load "desktop")
+(require 'init-keymap)
+(require 'init-desktop)
+(desktop-load-default)
+(desktop-read)
+
+;(setq desktop-enable nil)
+;(setq desktop-missing-file-warning nil)
+(setq permanent-buffers-mode nil)
+(setq truncate-lines nil)
+;(setq zmacs-regions nil)
+(setq desktop-path (cons (expand-file-name "~/.demacs.d/") load-path))
+
+(defun my-desktop-save ()
+ "when exiting, save the desktop first."
+ (if desktop-dirname
+	  (desktop-save desktop-dirname)))
+
+(add-hook 'kill-emacs-hook 'my-desktop-save)
