@@ -35,7 +35,7 @@
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
 
-
+
 ;; Adjust garbage collection thresholds during startup, and thereafter
 
 (let ((normal-gc-cons-threshold (* 20 1024 1024))
@@ -44,7 +44,7 @@
   (add-hook 'emacs-startup-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
-
+
 ;; Bootstrap config
 
 
@@ -55,7 +55,7 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
-
+
 ;; Allow users to provide an optional "init-preload-local.el"
 (require 'init-preload-local nil t)
 
@@ -77,7 +77,9 @@
 (require 'init-flycheck)
 
 (require 'init-recentf)
-(require 'init-minibuffer)
+;; get following error upon C-x-b when init-minibuffer is active
+;; "Symbol’s function definition is void: projectile-project-root"
+;(require 'init-minibuffer)
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
@@ -164,7 +166,7 @@
 
 (require 'init-direnv)
 
-
+
 
 ;; Allow access from emacsclient
 (add-hook 'after-init-hook
@@ -197,18 +199,10 @@
 ;; sets the load path for lisp files
 ;; append to load path
 ;;-------------------------------------------------------------------------------
-;(setq original-load-path load-path)
-;(setq load-path
-;      (append
-;       (list (expand-file-name "~/.emacs.d/lisp/"))
-;       original-load-path))
-
-;(setq load-path (cons (expand-file-name "~/.xemacs/lisp") load-path))
-;(setq load-path (cons "~/.xemacs/lisp" load-path))
 
 ;; set stuff
-(line-number-mode 1)
-(set-default 'auto-show-mode nil)
+(setq line-number-mode 1)
+(setq auto-show-mode nil)
 (setq blink-matching-paren t)
 (setq column-number-mode t)
 
