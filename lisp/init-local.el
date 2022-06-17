@@ -62,6 +62,10 @@ DIRNAME omitted or nil means use `desktop-dirname'."
 
 (provide 'init-local)
 
+
+## ref: http://xahlee.info/emacs/emacs/emacs_theme_gallery.html
+## ref: http://xahlee.info/emacs/emacs/emacs_playing_with_color_theme.html
+## ref: https://emacsthemes.com/
 ;(load-theme 'ahungry)
 ;(load-theme 'tango t)
 ;(load-theme 'misterioso t)
