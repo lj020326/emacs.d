@@ -227,7 +227,7 @@
                                         ;(load "desktop")
 (require 'init-keymap)
 ;(require 'init-desktop)
-(desktop-load-default)
+;(desktop-load-default)
 (desktop-read)
 
 ;(setq desktop-enable nil)
