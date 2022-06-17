@@ -254,5 +254,11 @@
  (if desktop-dirname
 	  (desktop-save desktop-dirname)))
 
+(defun desktop-release-lock (&optional dirname)
+  "Remove the lock file for the desktop in DIRNAME.
+DIRNAME omitted or nil means use `desktop-dirname'."
+  (let ((file (desktop-full-lock-name dirname)))
+    (when (file-exists-p file) (delete-file file))))
+
 (add-hook 'kill-emacs-hook 'my-desktop-save)
 (add-hook 'kill-emacs-hook 'desktop-release-lock)
