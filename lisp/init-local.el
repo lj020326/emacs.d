@@ -63,4 +63,5 @@ DIRNAME omitted or nil means use `desktop-dirname'."
 (provide 'init-local)
 
 ;(load-theme 'ahungry)
-(load-theme 'tango t)
+;(load-theme 'tango t)
+(load-theme 'misterioso t)
