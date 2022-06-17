@@ -53,37 +53,37 @@
 ;; Allow users to provide an optional "init-preload-local.el"
 (require 'init-preload-local nil t)
 
-;; Load configs for specific features and modes
-(require-package 'diminish)
-(maybe-require-package 'scratch)
-(require-package 'command-log-mode)
-
-(require 'init-frame-hooks)
-(require 'init-xterm)
-(require 'init-themes)
-(require 'init-osx-keys)
-(require 'init-gui-frames)
-(require 'init-dired)
-(require 'init-isearch)
-(require 'init-grep)
-(require 'init-uniquify)
-(require 'init-ibuffer)
-;;(require 'init-flymake)
-;;(require 'init-eglot)
-
-(require 'init-recentf)
-;; get following error upon C-x-b when init-minibuffer is active
-;; "Symbol’s function definition is void: projectile-project-root"
-;(require 'init-minibuffer)
-(require 'init-hippie-expand)
-(require 'init-company)
-(require 'init-windows)
-(require 'init-sessions)
-(require 'init-mmm)
-
-(require 'init-editing-utils)
-(require 'init-whitespace)
-
+;;; Load configs for specific features and modes
+;(require-package 'diminish)
+;(maybe-require-package 'scratch)
+;(require-package 'command-log-mode)
+;
+;(require 'init-frame-hooks)
+;(require 'init-xterm)
+;(require 'init-themes)
+;(require 'init-osx-keys)
+;(require 'init-gui-frames)
+;(require 'init-dired)
+;(require 'init-isearch)
+;(require 'init-grep)
+;(require 'init-uniquify)
+;(require 'init-ibuffer)
+;;;(require 'init-flymake)
+;;;(require 'init-eglot)
+;
+;(require 'init-recentf)
+;;; get following error upon C-x-b when init-minibuffer is active
+;;; "Symbol’s function definition is void: projectile-project-root"
+;;(require 'init-minibuffer)
+;(require 'init-hippie-expand)
+;(require 'init-company)
+;(require 'init-windows)
+;(require 'init-sessions)
+;(require 'init-mmm)
+;
+;(require 'init-editing-utils)
+;(require 'init-whitespace)
+;
 ;(require 'init-vc)
 ;(require 'init-darcs)
 ;(require 'init-git)
