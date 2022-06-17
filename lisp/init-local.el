@@ -61,3 +61,5 @@ DIRNAME omitted or nil means use `desktop-dirname'."
 (add-hook 'kill-emacs-hook 'desktop-release-lock 'desktop-path)
 
 (provide 'init-local)
+
+(load-theme 'ahungry)
