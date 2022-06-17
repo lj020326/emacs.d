@@ -239,6 +239,9 @@
 (setq permanent-buffers-mode nil)
 (setq truncate-lines nil)
 ;(setq zmacs-regions nil)
+
+;; performed in init-session.el
+;(desktop-save-mode 1)
 (setq desktop-path (cons (expand-file-name "~/.demacs.d/") load-path))
 
 (defun desktop-release-lock (&optional dirname)
