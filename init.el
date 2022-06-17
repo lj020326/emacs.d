@@ -9,6 +9,12 @@
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
 ;;(setq debug-on-error t)
 
+(let ((minver "25.1"))
+  (when (version< emacs-version minver)
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+(when (version< emacs-version "26.1")
+  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
+
 ;; ref: https://emacs.stackexchange.com/questions/4253/how-to-start-emacs-with-a-custom-user-emacs-directory
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
@@ -53,27 +59,27 @@
 ;; Allow users to provide an optional "init-preload-local.el"
 (require 'init-preload-local nil t)
 
-;;; Load configs for specific features and modes
-;(require-package 'diminish)
-;(maybe-require-package 'scratch)
-;(require-package 'command-log-mode)
-;
-;(require 'init-frame-hooks)
-;(require 'init-xterm)
-;(require 'init-themes)
-;(require 'init-osx-keys)
-;(require 'init-gui-frames)
-;(require 'init-dired)
-;(require 'init-isearch)
-;(require 'init-grep)
-;(require 'init-uniquify)
-;(require 'init-ibuffer)
-;;;(require 'init-flymake)
-;;;(require 'init-eglot)
-;
-;(require 'init-recentf)
-;;; get following error upon C-x-b when init-minibuffer is active
-;;; "Symbol’s function definition is void: projectile-project-root"
+;; Load configs for specific features and modes
+(require-package 'diminish)
+(maybe-require-package 'scratch)
+(require-package 'command-log-mode)
+
+(require 'init-frame-hooks)
+(require 'init-xterm)
+(require 'init-themes)
+(require 'init-osx-keys)
+(require 'init-gui-frames)
+(require 'init-dired)
+(require 'init-isearch)
+(require 'init-grep)
+(require 'init-uniquify)
+(require 'init-ibuffer)
+(require 'init-flymake)
+(require 'init-eglot)
+
+(require 'init-recentf)
+;; get following error upon C-x-b when init-minibuffer is active
+;; "Symbol’s function definition is void: projectile-project-root"
 ;;(require 'init-minibuffer)
 ;(require 'init-hippie-expand)
 ;(require 'init-company)
