@@ -74,7 +74,8 @@
 (require 'init-grep)
 (require 'init-uniquify)
 (require 'init-ibuffer)
-(require 'init-flycheck)
+(require 'init-flymake)
+(require 'init-eglot)
 
 (require 'init-recentf)
 ;; get following error upon C-x-b when init-minibuffer is active
