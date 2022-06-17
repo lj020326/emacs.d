@@ -9,6 +9,20 @@
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
 ;;(setq debug-on-error t)
 
+;; ref: https://emacs.stackexchange.com/questions/4253/how-to-start-emacs-with-a-custom-user-emacs-directory
+(setq user-init-file (or load-file-name (buffer-file-name)))
+(setq user-emacs-directory (file-name-directory user-init-file))
+
+;;-------------------------------------------------------------------------------
+;; sets the load path for lisp files
+;; append to load path
+;;-------------------------------------------------------------------------------
+;; (setq original-load-path load-path)
+;; (setq load-path
+;;       (append
+;;        (list (expand-file-name "~/.demacs.d/lisp/"))
+;;        original-load-path))
+
 (let ((minver "25.1"))
   (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
@@ -21,7 +35,7 @@
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
 (defconst *is-a-mac* (eq system-type 'darwin))
 
-
+
 ;; Adjust garbage collection thresholds during startup, and thereafter
 
 (let ((normal-gc-cons-threshold (* 20 1024 1024))
@@ -30,7 +44,7 @@
   (add-hook 'emacs-startup-hook
             (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
-
+
 ;; Bootstrap config
 
 
@@ -41,7 +55,7 @@
 (require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
-
+
 ;; Allow users to provide an optional "init-preload-local.el"
 (require 'init-preload-local nil t)
 
@@ -60,11 +74,13 @@
 (require 'init-grep)
 (require 'init-uniquify)
 (require 'init-ibuffer)
-(require 'init-flymake)
+;(require 'init-flymake)
 (require 'init-eglot)
 
 (require 'init-recentf)
-(require 'init-minibuffer)
+;; get following error upon C-x-b when init-minibuffer is active
+;; "Symbol’s function definition is void: projectile-project-root"
+;(require 'init-minibuffer)
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
@@ -151,7 +167,7 @@
 
 (require 'init-direnv)
 
-
+
 
 ;; Allow access from emacsclient
 (add-hook 'after-init-hook
@@ -177,3 +193,44 @@
 ;; no-byte-compile: t
 ;; End:
 ;;; init.el ends here
+
+
+
+;;-------------------------------------------------------------------------------
+;; sets the load path for lisp files
+;; append to load path
+;;-------------------------------------------------------------------------------
+
+;; set stuff
+(setq line-number-mode 1)
+(setq auto-show-mode nil)
+(setq blink-matching-paren t)
+(setq column-number-mode t)
+
+;; dired-x
+
+;;(setq dired-load-hook '(lambda () (load "dired-x")))
+
+;;-------------------------------------------------------------------------------
+;; Loads lisp/desktop.el
+;; Always use Meta-X desktop-save when exiting xemacs to save your settings
+;;-------------------------------------------------------------------------------
+                                        ;(load "desktop")
+(require 'init-keymap)
+(require 'init-desktop)
+(desktop-load-default)
+(desktop-read)
+
+;(setq desktop-enable nil)
+;(setq desktop-missing-file-warning nil)
+(setq permanent-buffers-mode nil)
+(setq truncate-lines nil)
+;(setq zmacs-regions nil)
+(setq desktop-path (cons (expand-file-name "~/.demacs.d/") load-path))
+
+(defun my-desktop-save ()
+ "when exiting, save the desktop first."
+ (if desktop-dirname
+	  (desktop-save desktop-dirname)))
+
+(add-hook 'kill-emacs-hook 'my-desktop-save)
