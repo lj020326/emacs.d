@@ -78,122 +78,122 @@
 (require 'init-eglot)
 
 (require 'init-recentf)
-;; get following error upon C-x-b when init-minibuffer is active
-;; "Symbol’s function definition is void: projectile-project-root"
-;;(require 'init-minibuffer)
-;(require 'init-hippie-expand)
-;(require 'init-company)
-;(require 'init-windows)
+; get following error upon C-x-b when init-minibuffer is active
+; "Symbol’s function definition is void: projectile-project-root"
+(require 'init-minibuffer)
+(require 'init-hippie-expand)
+(require 'init-company)
+(require 'init-windows)
 (require 'init-sessions)
-;(require 'init-mmm)
-;
-;(require 'init-editing-utils)
-;(require 'init-whitespace)
-;
-;(require 'init-vc)
-;(require 'init-darcs)
-;(require 'init-git)
-;(require 'init-github)
-;
-;(require 'init-projectile)
-;
-;(require 'init-compile)
-;(require 'init-crontab)
-;(require 'init-textile)
-;(require 'init-markdown)
-;(require 'init-csv)
-;(require 'init-erlang)
-;(require 'init-javascript)
-;(require 'init-php)
-;(require 'init-org)
-;(require 'init-nxml)
-;(require 'init-html)
-;(require 'init-css)
-;(require 'init-haml)
-;(require 'init-http)
-;(require 'init-python)
-;(require 'init-haskell)
-;(require 'init-elm)
-;(require 'init-purescript)
-;(require 'init-ruby)
-;(require 'init-rails)
-;(require 'init-sql)
-;(require 'init-ocaml)
-;(require 'init-j)
-;(require 'init-nim)
-;(require 'init-rust)
-;(require 'init-toml)
-;(require 'init-yaml)
-;(require 'init-docker)
-;(require 'init-terraform)
-;(require 'init-nix)
-;(maybe-require-package 'nginx-mode)
-;
-;(require 'init-paredit)
-;(require 'init-lisp)
-;(require 'init-slime)
-;(require 'init-clojure)
-;(require 'init-clojure-cider)
-;(require 'init-common-lisp)
-;
-;(when *spell-check-support-enabled*
-;  (require 'init-spelling))
-;
-;(require 'init-misc)
-;
-;(require 'init-folding)
-;(require 'init-dash)
-;
-;;;(require 'init-twitter)
-;;; (require 'init-mu)
-;(require 'init-ledger)
-;;; Extra packages which don't require any configuration
-;
-;(require-package 'sudo-edit)
-;(require-package 'gnuplot)
-;(require-package 'lua-mode)
-;(require-package 'htmlize)
-;(when *is-a-mac*
-;  (require-package 'osx-location))
-;(maybe-require-package 'dotenv-mode)
-;(maybe-require-package 'shfmt)
-;
-;(when (maybe-require-package 'uptimes)
-;  (setq-default uptimes-keep-count 200)
-;  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
-;
-;(when (fboundp 'global-eldoc-mode)
-;  (add-hook 'after-init-hook 'global-eldoc-mode))
-;
-;(require 'init-direnv)
-;
-;
-;
-;;; Allow access from emacsclient
-;(add-hook 'after-init-hook
-;          (lambda ()
-;            (require 'server)
-;            (unless (server-running-p)
-;              (server-start))))
-;
-;;; Variables configured via the interactive 'customize' interface
-;(when (file-exists-p custom-file)
-;  (load custom-file))
-;
-;;; Locales (setting them earlier in this file doesn't work in X)
-;(require 'init-locales)
-;
-;;; Allow users to provide an optional "init-local" containing personal settings
-;(require 'init-local nil t)
-;
-;(provide 'init)
-;
-;;; Local Variables:
-;;; coding: utf-8
-;;; no-byte-compile: t
-;;; End:
-;;;; init.el ends here
-;
+(require 'init-mmm)
+
+(require 'init-editing-utils)
+(require 'init-whitespace)
+
+(require 'init-vc)
+(require 'init-darcs)
+(require 'init-git)
+(require 'init-github)
+
+(require 'init-projectile)
+
+(require 'init-compile)
+(require 'init-crontab)
+(require 'init-textile)
+(require 'init-markdown)
+(require 'init-csv)
+(require 'init-erlang)
+(require 'init-javascript)
+(require 'init-php)
+(require 'init-org)
+(require 'init-nxml)
+(require 'init-html)
+(require 'init-css)
+(require 'init-haml)
+(require 'init-http)
+(require 'init-python)
+(require 'init-haskell)
+(require 'init-elm)
+(require 'init-purescript)
+(require 'init-ruby)
+(require 'init-rails)
+(require 'init-sql)
+(require 'init-ocaml)
+(require 'init-j)
+(require 'init-nim)
+(require 'init-rust)
+(require 'init-toml)
+(require 'init-yaml)
+(require 'init-docker)
+(require 'init-terraform)
+(require 'init-nix)
+(maybe-require-package 'nginx-mode)
+
+(require 'init-paredit)
+(require 'init-lisp)
+(require 'init-slime)
+(require 'init-clojure)
+(require 'init-clojure-cider)
+(require 'init-common-lisp)
+
+(when *spell-check-support-enabled*
+  (require 'init-spelling))
+
+(require 'init-misc)
+
+(require 'init-folding)
+(require 'init-dash)
+
+;;(require 'init-twitter)
+;; (require 'init-mu)
+(require 'init-ledger)
+;; Extra packages which don't require any configuration
+
+(require-package 'sudo-edit)
+(require-package 'gnuplot)
+(require-package 'lua-mode)
+(require-package 'htmlize)
+(when *is-a-mac*
+  (require-package 'osx-location))
+(maybe-require-package 'dotenv-mode)
+(maybe-require-package 'shfmt)
+
+(when (maybe-require-package 'uptimes)
+  (setq-default uptimes-keep-count 200)
+  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
+
+(when (fboundp 'global-eldoc-mode)
+  (add-hook 'after-init-hook 'global-eldoc-mode))
+
+(require 'init-direnv)
+
+
+
+;; Allow access from emacsclient
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p)
+              (server-start))))
+
+;; Variables configured via the interactive 'customize' interface
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+;; Locales (setting them earlier in this file doesn't work in X)
+(require 'init-locales)
+
+;; Allow users to provide an optional "init-local" containing personal settings
+(require 'init-local nil t)
+
+(provide 'init)
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:
+;;; init.el ends here
+
 
 
 ;;-------------------------------------------------------------------------------
