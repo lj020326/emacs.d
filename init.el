@@ -9,20 +9,6 @@
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
 (setq debug-on-error t)
 
-;; ref: https://emacs.stackexchange.com/questions/4253/how-to-start-emacs-with-a-custom-user-emacs-directory
-(setq user-init-file (or load-file-name (buffer-file-name)))
-(setq user-emacs-directory (file-name-directory user-init-file))
-
-;;-------------------------------------------------------------------------------
-;; sets the load path for lisp files
-;; append to load path
-;;-------------------------------------------------------------------------------
-;; (setq original-load-path load-path)
-;; (setq load-path
-;;       (append
-;;        (list (expand-file-name "~/.demacs.d/lisp/"))
-;;        original-load-path))
-
 (let ((minver "25.1"))
   (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
@@ -193,62 +179,3 @@
 ;; no-byte-compile: t
 ;; End:
 ;;; init.el ends here
-
-
-
-;;-------------------------------------------------------------------------------
-;; sets the load path for lisp files
-;; append to load path
-;;-------------------------------------------------------------------------------
-
-;; set stuff
-(setq line-number-mode 1)
-(setq auto-show-mode nil)
-(setq blink-matching-paren t)
-(setq column-number-mode t)
-(setq inhibit-startup-message t )
-
-;; Change the values of some variables.
-;; (t means true; nil means false.)
-;;
-;; Use the "Describe Variable..." option on the "Help" menu
-;; to find out what these variables mean.
-(setq find-file-use-truenames nil
-      find-file-compare-truenames t
-      minibuffer-confirm-incomplete t
-      complex-buffers-menu-p t
-      next-line-add-newlines nil
-      mail-yank-prefix "> "
-      kill-whole-line t
-      )
-
-;; dired-x
-
-;;(setq dired-load-hook '(lambda () (load "dired-x")))
-
-;;-------------------------------------------------------------------------------
-;; Loads lisp/desktop.el
-;; Always use Meta-X desktop-save when exiting xemacs to save your settings
-;;-------------------------------------------------------------------------------
-                                        ;(load "desktop")
-(require 'init-keymap)
-(desktop-read)
-
-;(setq desktop-enable nil)
-;(setq desktop-missing-file-warning nil)
-(setq permanent-buffers-mode nil)
-(setq truncate-lines nil)
-;(setq zmacs-regions nil)
-
-;; performed in init-session.el
-;(desktop-save-mode 1)
-(setq desktop-path (cons (expand-file-name "~/.demacs.d/") load-path))
-
-(defun desktop-release-lock (&optional dirname)
-  "Remove the lock file for the desktop in DIRNAME.
-DIRNAME omitted or nil means use `desktop-dirname'."
-  (let ((file (desktop-full-lock-name dirname)))
-    (when (file-exists-p file) (delete-file file))))
-
-;(add-hook 'kill-emacs-hook 'desktop-release-lock)
-(add-hook 'kill-emacs-hook 'desktop-release-lock 'desktop-path)
