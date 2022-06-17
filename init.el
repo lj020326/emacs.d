@@ -74,8 +74,8 @@
 (require 'init-grep)
 (require 'init-uniquify)
 (require 'init-ibuffer)
-;(require 'init-flymake)
-(require 'init-eglot)
+;;(require 'init-flymake)
+;;(require 'init-eglot)
 
 (require 'init-recentf)
 ;; get following error upon C-x-b when init-minibuffer is active
@@ -136,64 +136,64 @@
 (require 'init-clojure-cider)
 (require 'init-common-lisp)
 
-(when *spell-check-support-enabled*
-  (require 'init-spelling))
-
-(require 'init-misc)
-
-(require 'init-folding)
-(require 'init-dash)
-
-;;(require 'init-twitter)
-;; (require 'init-mu)
-(require 'init-ledger)
-;; Extra packages which don't require any configuration
-
-(require-package 'sudo-edit)
-(require-package 'gnuplot)
-(require-package 'lua-mode)
-(require-package 'htmlize)
-(when *is-a-mac*
-  (require-package 'osx-location))
-(maybe-require-package 'dotenv-mode)
-(maybe-require-package 'shfmt)
-
-(when (maybe-require-package 'uptimes)
-  (setq-default uptimes-keep-count 200)
-  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
-
-(when (fboundp 'global-eldoc-mode)
-  (add-hook 'after-init-hook 'global-eldoc-mode))
-
-(require 'init-direnv)
-
-
-
-;; Allow access from emacsclient
-(add-hook 'after-init-hook
-          (lambda ()
-            (require 'server)
-            (unless (server-running-p)
-              (server-start))))
-
-;; Variables configured via the interactive 'customize' interface
-(when (file-exists-p custom-file)
-  (load custom-file))
-
-;; Locales (setting them earlier in this file doesn't work in X)
-(require 'init-locales)
-
-;; Allow users to provide an optional "init-local" containing personal settings
-(require 'init-local nil t)
-
-(provide 'init)
-
-;; Local Variables:
-;; coding: utf-8
-;; no-byte-compile: t
-;; End:
-;;; init.el ends here
-
+;(when *spell-check-support-enabled*
+;  (require 'init-spelling))
+;
+;(require 'init-misc)
+;
+;(require 'init-folding)
+;(require 'init-dash)
+;
+;;;(require 'init-twitter)
+;;; (require 'init-mu)
+;(require 'init-ledger)
+;;; Extra packages which don't require any configuration
+;
+;(require-package 'sudo-edit)
+;(require-package 'gnuplot)
+;(require-package 'lua-mode)
+;(require-package 'htmlize)
+;(when *is-a-mac*
+;  (require-package 'osx-location))
+;(maybe-require-package 'dotenv-mode)
+;(maybe-require-package 'shfmt)
+;
+;(when (maybe-require-package 'uptimes)
+;  (setq-default uptimes-keep-count 200)
+;  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
+;
+;(when (fboundp 'global-eldoc-mode)
+;  (add-hook 'after-init-hook 'global-eldoc-mode))
+;
+;(require 'init-direnv)
+;
+;
+;
+;;; Allow access from emacsclient
+;(add-hook 'after-init-hook
+;          (lambda ()
+;            (require 'server)
+;            (unless (server-running-p)
+;              (server-start))))
+;
+;;; Variables configured via the interactive 'customize' interface
+;(when (file-exists-p custom-file)
+;  (load custom-file))
+;
+;;; Locales (setting them earlier in this file doesn't work in X)
+;(require 'init-locales)
+;
+;;; Allow users to provide an optional "init-local" containing personal settings
+;(require 'init-local nil t)
+;
+;(provide 'init)
+;
+;;; Local Variables:
+;;; coding: utf-8
+;;; no-byte-compile: t
+;;; End:
+;;;; init.el ends here
+;
 
 
 ;;-------------------------------------------------------------------------------
@@ -206,6 +206,21 @@
 (setq auto-show-mode nil)
 (setq blink-matching-paren t)
 (setq column-number-mode t)
+(setq inhibit-startup-message t )
+
+;; Change the values of some variables.
+;; (t means true; nil means false.)
+;;
+;; Use the "Describe Variable..." option on the "Help" menu
+;; to find out what these variables mean.
+(setq find-file-use-truenames nil
+      find-file-compare-truenames t
+      minibuffer-confirm-incomplete t
+      complex-buffers-menu-p t
+      next-line-add-newlines nil
+      mail-yank-prefix "> "
+      kill-whole-line t
+      )
 
 ;; dired-x
 
