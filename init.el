@@ -17,11 +17,11 @@
 ;; sets the load path for lisp files
 ;; append to load path
 ;;-------------------------------------------------------------------------------
-(setq original-load-path load-path)
-(setq load-path
-      (append
-       (list (expand-file-name "~/.demacs.d/lisp/"))
-       original-load-path))
+;; (setq original-load-path load-path)
+;; (setq load-path
+;;       (append
+;;        (list (expand-file-name "~/.demacs.d/lisp/"))
+;;        original-load-path))
 
 (let ((minver "25.1"))
   (when (version< emacs-version minver)
