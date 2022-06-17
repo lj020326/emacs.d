@@ -9,6 +9,12 @@
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
 ;;(setq debug-on-error t)
 
+(let ((minver "25.1"))
+  (when (version< emacs-version minver)
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+(when (version< emacs-version "26.1")
+  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
+
 ;; ref: https://emacs.stackexchange.com/questions/4253/how-to-start-emacs-with-a-custom-user-emacs-directory
 (setq user-init-file (or load-file-name (buffer-file-name)))
 (setq user-emacs-directory (file-name-directory user-init-file))
@@ -78,9 +84,9 @@
 (require 'init-eglot)
 
 (require 'init-recentf)
-;; get following error upon C-x-b when init-minibuffer is active
-;; "Symbol’s function definition is void: projectile-project-root"
-;(require 'init-minibuffer)
+; get following error upon C-x-b when init-minibuffer is active
+; "Symbol’s function definition is void: projectile-project-root"
+(require 'init-minibuffer)
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-windows)
@@ -206,6 +212,21 @@
 (setq auto-show-mode nil)
 (setq blink-matching-paren t)
 (setq column-number-mode t)
+(setq inhibit-startup-message t )
+
+;; Change the values of some variables.
+;; (t means true; nil means false.)
+;;
+;; Use the "Describe Variable..." option on the "Help" menu
+;; to find out what these variables mean.
+(setq find-file-use-truenames nil
+      find-file-compare-truenames t
+      minibuffer-confirm-incomplete t
+      complex-buffers-menu-p t
+      next-line-add-newlines nil
+      mail-yank-prefix "> "
+      kill-whole-line t
+      )
 
 ;; dired-x
 
@@ -217,8 +238,8 @@
 ;;-------------------------------------------------------------------------------
                                         ;(load "desktop")
 (require 'init-keymap)
-(require 'init-desktop)
-(desktop-load-default)
+;(require 'init-desktop)
+;(desktop-load-default)
 (desktop-read)
 
 ;(setq desktop-enable nil)
@@ -228,9 +249,17 @@
 ;(setq zmacs-regions nil)
 (setq desktop-path (cons (expand-file-name "~/.demacs.d/") load-path))
 
-(defun my-desktop-save ()
- "when exiting, save the desktop first."
- (if desktop-dirname
-	  (desktop-save desktop-dirname)))
+;(defun my-desktop-save ()
+; "when exiting, save the desktop first."
+; (if desktop-dirname
+;	  (desktop-save desktop-dirname)))
 
-(add-hook 'kill-emacs-hook 'my-desktop-save)
+(defun desktop-release-lock (&optional dirname)
+  "Remove the lock file for the desktop in DIRNAME.
+DIRNAME omitted or nil means use `desktop-dirname'."
+  (let ((file (desktop-full-lock-name dirname)))
+    (when (file-exists-p file) (delete-file file))))
+
+;(add-hook 'kill-emacs-hook 'my-desktop-save)
+;(add-hook 'kill-emacs-hook 'desktop-release-lock)
+(add-hook 'kill-emacs-hook 'desktop-release-lock 'desktop-path)
